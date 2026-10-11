@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Pricing Plans | Modern SaaS UI</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Background Ambient Glows -->
+    <div class="ambient-glow glow-top" aria-hidden="true"></div>
+    <div class="ambient-glow glow-bottom" aria-hidden="true"></div>
+
+    <main class="page-shell">
+      <section class="pricing-section" aria-labelledby="pricing-title">
+        <!-- Section Header -->
+        <header class="section-header">
+          <div class="badge-pill">
+            <span class="badge-dot"></span>
+            <span>Flexible & Transparent Plans</span>
+          </div>
+          <h1 id="pricing-title">Choose the plan that fits your growth</h1>
+          <p class="section-subtitle">
+            Scale seamlessly from solo side-projects to enterprise-grade workloads. Cancel or switch anytime.
+          </p>
+        </header>
+
+        <!-- Interactive Controls -->
+        <div class="controls-wrapper" aria-label="Pricing filters and billing options">
+          <!-- Monthly / Yearly Toggle Switch -->
+          <div class="billing-control">
+            <button
+              class="billing-label-btn active"
+              id="labelMonthly"
+              type="button"
+              data-target="monthly"
+              aria-label="Select monthly billing"
+            >
+              Monthly
+            </button>
+
+            <button
+              class="toggle-switch"
+              id="billingToggle"
+              type="button"
+              role="switch"
+              aria-checked="false"
+              aria-label="Toggle between monthly and yearly billing"
+            >
+              <span class="switch-thumb"></span>
+            </button>
+
+            <button
+              class="billing-label-btn"
+              id="labelYearly"
+              type="button"
+              data-target="yearly"
+              aria-label="Select yearly billing"
+            >
+              Yearly
+              <span class="save-tag">Save 20%</span>
+            </button>
+          </div>
+
+          <!-- Category Filter Buttons -->
+          <nav class="filter-bar" role="group" aria-label="Filter plans by tier category">
+            <button
+              class="filter-btn active"
+              type="button"
+              data-filter="all"
+              aria-pressed="true"
+            >
+              <span>All Plans</span>
+              <span class="filter-badge" id="countAll">4</span>
+            </button>
+            <button
+              class="filter-btn"
+              type="button"
+              data-filter="basic"
+              aria-pressed="false"
+            >
+              <span>Basic</span>
+              <span class="filter-badge" id="countBasic">2</span>
+            </button>
+            <button
+              class="filter-btn"
+              type="button"
+              data-filter="premium"
+              aria-pressed="false"
+            >
+              <span>Premium</span>
+              <span class="filter-badge" id="countPremium">2</span>
+            </button>
+          </nav>
+        </div>
+
+        <!-- Pricing Cards Grid -->
+        <div class="pricing-grid" id="pricingGrid">
+          <!-- Card 1: Starter (Basic) -->
+          <article class="plan-card" data-category="basic" data-plan="starter">
+            <div class="card-header">
+              <div class="plan-icon-wrapper icon-blue" aria-hidden="true">
+                <!-- Rocket SVG -->
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+                  <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+                  <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+                  <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+                </svg>
+              </div>
+              <span class="card-tier-label">Starter Tier</span>
+            </div>
+
+            <div class="card-heading">
+              <h2 class="plan-title">Starter</h2>
+              <p class="plan-description">
+                Ideal for solo founders, freelancers, and testing new ideas with speed.
+              </p>
+            </div>
+
+            <div class="price-container">
+              <div class="price-display">
+                <span class="currency-symbol">$</span>
+                <span
+                  class="price-number"
+                  data-monthly="19"
+                  data-yearly="15"
+                  data-yearly-total="180"
+                  aria-live="polite"
+                >19</span>
+                <span class="price-period">/ month</span>
+              </div>
+              <p class="billing-note" data-monthly-note="Billed monthly" data-yearly-note="Billed $180 annually (Save $48)">
+                Billed monthly
+              </p>
+            </div>
+
+            <div class="divider"></div>
+
+            <ul class="features-list" aria-label="Starter plan features">
+              <li class="feature-item">
+                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                <span><strong>1</strong> Active Workspace</span>
+              </li>
+              <li class="feature-item">
+                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                <span>Up to <strong>5</strong> team projects</span>
+              </li>
+              <li class="feature-item">
+                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                <span>Standard email support</span>
+              </li>
+              <li class="feature-item">
+                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                <span>Core analytics dashboard</span>
+              </li>
+              <li class="feature-item muted">
+                <svg class="cross-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                </svg>
+                <span>Custom domain & API</span>
+              </li>
+            </ul>
+
+            <button class="cta-button" type="button" data-plan="Starter">
+              <span>Get Started</span>
+              <svg class="arrow-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </button>
+          </article>
+
+          <!-- Card 2: Growth (Premium - Highlighted Most Popular) -->
+          <article class="plan-card featured-card" data-category="premium" data-plan="growth">
+            <!-- Popular Badge -->
+            <div class="popular-ribbon" aria-label="Most popular plan">
+              <span class="ribbon-glow" aria-hidden="true"></span>
+              <svg class="sparkle-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2l2.4 7.2h7.6l-6 4.8 2.4 7.2-6.4-4.8-6.4 4.8 2.4-7.2-6-4.8h7.6z"/>
+              </svg>
+              <span>Most Popular</span>
+            </div>
+
+            <div class="card-header">
+              <div class="plan-icon-wrapper icon-emerald" aria-hidden="true">
+                <!-- Zap / Lightning SVG -->
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+              </div>
+              <span class="card-tier-label tier-featured">Best Value</span>
+            </div>
+
+            <div class="card-heading">
+              <h2 class="plan-title">Growth</h2>
+              <p class="plan-description">
+                Tailored for high-velocity teams needing automated workflows & scale.
+              </p>
+            </div>
+
+            <div class="price-container">
+              <div class="price-display">
+                <span class="currency-symbol">$</span>
+                <span
+                  class="price-number"
+                  data-monthly="49"
+                  data-yearly="39"
+                  data-yearly-total="468"
+                  aria-live="polite"
+                >49</span>
+                <span class="price-period">/ month</span>
+              </div>
+              <p class="billing-note" data-monthly-note="Billed monthly" data-yearly-note="Billed $468 annually (Save $120)">
+                Billed monthly
+              </p>
+            </div>
+
+            <div class="divider"></div>
+
+            <ul class="features-list" aria-label="Growth plan features">
+              <li class="feature-item">
+                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                <span><strong>Unlimited</strong> active projects</span>
+              </li>
+              <li class="feature-item">
+                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                <span>Up to <strong>50,000</strong> monthly visits</span>
+              </li>
+              <li class="feature-item">
+                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                <span>Priority <strong>24/7</strong> live chat</span>
+              </li>
+              <li class="feature-item">
+                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                <span>Custom domain & SSL</span>
+              </li>
+              <li class="feature-item">
+                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                <span>Full automation triggers</span>
+              </li>
+            </ul>
+
+            <button class="cta-button primary-cta" type="button" data-plan="Growth">
+              <span>Start 14-Day Free Trial</span>
+              <svg class="arrow-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </button>
+          </article>
+
+          <!-- Card 3: Pro (Basic) -->
+          <article class="plan-card" data-category="basic" data-plan="pro">
+            <div class="card-header">
+              <div class="plan-icon-wrapper icon-amber" aria-hidden="true">
+                <!-- Trending / Chart SVG -->
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                  <polyline points="17 6 23 6 23 12"></polyline>
+                </svg>
+              </div>
+              <span class="card-tier-label">Power Tier</span>
+            </div>
+
+            <div class="card-heading">
+              <h2 class="plan-title">Pro</h2>
+              <p class="plan-description">
+                Designed for established businesses demanding deeper metrics and collaboration.
+              </p>
+            </div>
+
+            <div class="price-container">
+              <div class="price-display">
+                <span class="currency-symbol">$</span>
+                <span
+                  class="price-number"
+                  data-monthly="79"
+                  data-yearly="63"
+                  data-yearly-total="756"
+                  aria-live="polite"
+                >79</span>
+                <span class="price-period">/ month</span>
+              </div>
+              <p class="billing-note" data-monthly-note="Billed monthly" data-yearly-note="Billed $756 annually (Save $192)">
+                Billed monthly
+              </p>
+            </div>
+
+            <div class="divider"></div>
+
+            <ul class="features-list" aria-label="Pro plan features">
+              <li class="feature-item">
+                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                <span><strong>10</strong> Team seats included</span>
+              </li>
+              <li class="feature-item">
+                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                <span>Advanced role permissions</span>
+              </li>
+              <li class="feature-item">
+                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                <span>Full REST API & Webhooks</span>
+              </li>
+              <li class="feature-item">
+                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                <span>Custom reports export (CSV/PDF)</span>
+              </li>
+              <li class="feature-item">
+                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                <span>Audit logging (30 days)</span>
+              </li>
+            </ul>
+
+            <button class="cta-button" type="button" data-plan="Pro">
+              <span>Choose Pro</span>
+              <svg class="arrow-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </button>
+          </article>
+
+          <!-- Card 4: Enterprise (Premium) -->
+          <article class="plan-card" data-category="premium" data-plan="enterprise">
+            <div class="card-header">
+              <div class="plan-icon-wrapper icon-purple" aria-hidden="true">
+                <!-- Shield / Organization SVG -->
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+              </div>
+              <span class="card-tier-label">Custom Tier</span>
+            </div>
+
+            <div class="card-heading">
+              <h2 class="plan-title">Enterprise</h2>
+              <p class="plan-description">
+                Uncompromising security, dedicated infrastructure, and enterprise agreements.
+              </p>
+            </div>
+
+            <div class="price-container">
+              <div class="price-display">
+                <span class="currency-symbol">$</span>
+                <span
+                  class="price-number"
+                  data-monthly="149"
+                  data-yearly="119"
+                  data-yearly-total="1428"
+                  aria-live="polite"
+                >149</span>
+                <span class="price-period">/ month</span>
+              </div>
+              <p class="billing-note" data-monthly-note="Billed monthly" data-yearly-note="Billed $1,428 annually (Save $360)">
+                Billed monthly
+              </p>
+            </div>
+
+            <div class="divider"></div>
+
+            <ul class="features-list" aria-label="Enterprise plan features">
+              <li class="feature-item">
+                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                <span><strong>Unlimited</strong> team seats</span>
+              </li>
+              <li class="feature-item">
+                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                <span>Dedicated account manager</span>
+              </li>
+              <li class="feature-item">
+                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                <span>SSO, SAML & 99.99% SLA</span>
+              </li>
+              <li class="feature-item">
+                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                <span>Custom data retention policy</span>
+              </li>
+              <li class="feature-item">
+                <svg class="check-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                <span>Tailored billing & security audits</span>
+              </li>
+            </ul>
+
+            <button class="cta-button" type="button" data-plan="Enterprise">
+              <span>Contact Sales</span>
+              <svg class="arrow-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </button>
+          </article>
+        </div>
+
+        <!-- Empty State (Fallback if no cards match filter) -->
+        <div class="empty-state hidden" id="emptyState" role="alert">
+          <p>No plans found for this category.</p>
+          <button class="empty-reset-btn" type="button" id="resetFilterBtn">View All Plans</button>
+        </div>
+
+        <!-- Trust Badges Footer -->
+        <footer class="pricing-footer">
+          <div class="trust-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            <span>Bank-grade 256-bit encryption</span>
+          </div>
+          <div class="trust-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+            <span>Cancel anytime with 1 click</span>
+          </div>
+          <div class="trust-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+            <span>30-day money-back guarantee</span>
+          </div>
+        </footer>
+      </section>
+    </main>
+
+    <!-- Interactive Toast Notification Container -->
+    <aside class="toast-container" id="toastContainer" aria-live="polite" aria-atomic="true"></aside>
+
+    <script src="script.js"></script>
+  </body>
+</html>

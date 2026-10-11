@@ -1,0 +1,972 @@
+/* ==========================================================================
+   Design Tokens & CSS Variables
+   ========================================================================== */
+:root {
+  --font-main: "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  
+  /* Color Palette - Deep Modern Dark Theme */
+  --bg-body: #070a13;
+  --bg-card: rgba(15, 23, 42, 0.72);
+  --bg-card-hover: rgba(20, 30, 55, 0.85);
+  --bg-featured: rgba(16, 26, 48, 0.9);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-card: rgba(148, 163, 184, 0.16);
+  --border-hover: rgba(99, 102, 241, 0.45);
+  
+  /* Accent Colors */
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+  --primary-glow: rgba(99, 102, 241, 0.35);
+  --accent-emerald: #10b981;
+  --accent-emerald-glow: rgba(16, 185, 129, 0.35);
+  --accent-amber: #f59e0b;
+  --accent-amber-glow: rgba(245, 158, 11, 0.3);
+  --accent-purple: #a855f7;
+  --accent-purple-glow: rgba(168, 85, 247, 0.3);
+
+  /* Typography Colors */
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-subtle: #64748b;
+
+  /* Shadows */
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 12px 30px rgba(0, 0, 0, 0.35);
+  --shadow-card-hover: 0 24px 50px rgba(0, 0, 0, 0.5), 0 0 35px var(--primary-glow);
+  --shadow-featured-hover: 0 26px 55px rgba(0, 0, 0, 0.55), 0 0 40px var(--accent-emerald-glow);
+
+  /* Radius */
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+  
+  /* Transitions */
+  --transition-fast: 0.18s ease;
+  --transition-normal: 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-spring: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ==========================================================================
+   Reset & Global Setup
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-body);
+  color: var(--text-main);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  line-height: 1.5;
+  background-image: 
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99, 102, 241, 0.25), transparent),
+    radial-gradient(ellipse 60% 40% at 85% 60%, rgba(16, 185, 129, 0.12), transparent);
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+/* ==========================================================================
+   Ambient Background Glows
+   ========================================================================== */
+.ambient-glow {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(120px);
+  opacity: 0.6;
+}
+
+.glow-top {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.35) 0%, transparent 70%);
+  top: -150px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.glow-bottom {
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, transparent 70%);
+  bottom: -150px;
+  right: 5%;
+}
+
+/* ==========================================================================
+   Layout Shell
+   ========================================================================== */
+.page-shell {
+  position: relative;
+  z-index: 1;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 64px 24px 96px;
+}
+
+.pricing-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ==========================================================================
+   Section Header
+   ========================================================================== */
+.section-header {
+  text-align: center;
+  max-width: 720px;
+  margin-bottom: 40px;
+}
+
+.badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(99, 102, 241, 0.12);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  border-radius: var(--radius-full);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #a5b4fc;
+  letter-spacing: 0.02em;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 10px rgba(99, 102, 241, 0.15);
+}
+
+.badge-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #818cf8;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #818cf8;
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.7; }
+}
+
+.section-header h1 {
+  font-size: clamp(2.2rem, 4.2vw, 3.4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin-bottom: 16px;
+  background: linear-gradient(180deg, #ffffff 20%, #cbd5e1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-subtitle {
+  font-size: clamp(1rem, 1.8vw, 1.125rem);
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   Controls: Billing Toggle & Category Filters
+   ========================================================================== */
+.controls-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 48px;
+  width: 100%;
+}
+
+/* --- Billing Switch Control --- */
+.billing-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid var(--border-card);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(12px);
+}
+
+.billing-label-btn {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: color var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 4px;
+}
+
+.billing-label-btn:hover {
+  color: var(--text-main);
+}
+
+.billing-label-btn.active {
+  color: #ffffff;
+}
+
+.save-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.25), rgba(16, 185, 129, 0.15));
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  color: #34d399;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.02em;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.2);
+  animation: gentlePulse 3s infinite ease-in-out;
+}
+
+@keyframes gentlePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Toggle Switch Element */
+.toggle-switch {
+  position: relative;
+  width: 52px;
+  height: 28px;
+  background: rgba(30, 41, 59, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-full);
+  padding: 3px;
+  transition: background var(--transition-normal), border-color var(--transition-normal);
+  cursor: pointer;
+}
+
+.toggle-switch:hover {
+  border-color: rgba(99, 102, 241, 0.5);
+}
+
+.toggle-switch:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+
+.switch-thumb {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  transform: translateX(0);
+  transition: transform var(--transition-spring), background var(--transition-normal);
+}
+
+/* When Toggle is Active (Yearly) */
+.toggle-switch[aria-checked="true"] {
+  background: linear-gradient(135deg, var(--primary) 0%, #4338ca 100%);
+  border-color: rgba(99, 102, 241, 0.6);
+  box-shadow: 0 0 16px var(--primary-glow);
+}
+
+.toggle-switch[aria-checked="true"] .switch-thumb {
+  transform: translateX(24px);
+}
+
+/* --- Category Filter Bar --- */
+.filter-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid var(--border-card);
+  padding: 6px;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(12px);
+}
+
+.filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: all var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.filter-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-1px);
+}
+
+.filter-btn:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.filter-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.1);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  transition: all var(--transition-fast);
+}
+
+/* Filter Button Active State (Micro-interaction) */
+.filter-btn.active {
+  background: linear-gradient(135deg, var(--primary) 0%, #4f46e5 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 16px var(--primary-glow);
+}
+
+.filter-btn.active .filter-badge {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+/* Active Button Click Micro-interaction */
+.filter-btn:active {
+  transform: scale(0.96);
+}
+
+/* ==========================================================================
+   Pricing Cards Grid
+   ========================================================================== */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  width: 100%;
+}
+
+/* Base Plan Card Styling */
+.plan-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  padding: 30px 24px 26px;
+  backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-sm);
+  transition: 
+    transform var(--transition-normal), 
+    border-color var(--transition-normal), 
+    box-shadow var(--transition-normal),
+    background var(--transition-normal),
+    opacity var(--transition-normal);
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Card Filter State Transitions */
+.plan-card.hidden {
+  display: none !important;
+}
+
+.plan-card.anim-fade-in {
+  animation: cardEntrance 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes cardEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* --- Card Hover Animations (Requirement: Card lift, shadow, border glow) --- */
+.plan-card:hover {
+  transform: translateY(-10px);
+  background: var(--bg-card-hover);
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.plan-card:hover .plan-icon-wrapper {
+  transform: scale(1.1) rotate(3deg);
+}
+
+/* ==========================================================================
+   Most Popular Featured Card Styling
+   ========================================================================== */
+.plan-card.featured-card {
+  background: var(--bg-featured);
+  border-color: rgba(16, 185, 129, 0.55);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), 0 0 25px rgba(16, 185, 129, 0.18);
+  position: relative;
+}
+
+.plan-card.featured-card:hover {
+  transform: translateY(-12px);
+  border-color: rgba(16, 185, 129, 0.85);
+  box-shadow: var(--shadow-featured-hover);
+}
+
+/* Top Floating Ribbon Badge */
+.popular-ribbon {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--radius-full);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 18px rgba(16, 185, 129, 0.5);
+  z-index: 2;
+  white-space: nowrap;
+}
+
+.popular-ribbon .sparkle-icon {
+  animation: spinSparkle 4s linear infinite;
+}
+
+@keyframes spinSparkle {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   Card Elements & Typography
+   ========================================================================== */
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.plan-icon-wrapper {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  transition: transform var(--transition-spring);
+}
+
+.icon-blue {
+  background: rgba(99, 102, 241, 0.15);
+  color: #818cf8;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+.icon-emerald {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+}
+
+.icon-amber {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.icon-purple {
+  background: rgba(168, 85, 247, 0.15);
+  color: #c084fc;
+  border: 1px solid rgba(168, 85, 247, 0.3);
+}
+
+.card-tier-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-subtle);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+}
+
+.tier-featured {
+  color: #34d399;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.card-heading {
+  margin-bottom: 20px;
+}
+
+.plan-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.plan-description {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+  min-height: 48px;
+}
+
+/* ==========================================================================
+   Price Display Block & Dynamic Animations
+   ========================================================================== */
+.price-container {
+  margin-bottom: 20px;
+}
+
+.price-display {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.currency-symbol {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-main);
+  opacity: 0.85;
+}
+
+.price-number {
+  font-size: clamp(2.4rem, 3vw, 3rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  display: inline-block;
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
+}
+
+.price-number.animating {
+  animation: priceSwap 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes priceSwap {
+  0% {
+    transform: translateY(-10px) scale(0.92);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.price-period {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-subtle);
+}
+
+.billing-note {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #818cf8;
+  margin-top: 6px;
+  min-height: 18px;
+  transition: color var(--transition-fast);
+}
+
+.plan-card.featured-card .billing-note {
+  color: #34d399;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-card) 20%, var(--border-card) 80%, transparent);
+  margin-bottom: 22px;
+}
+
+/* ==========================================================================
+   Feature List
+   ========================================================================== */
+.features-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  margin-bottom: 28px;
+  flex-grow: 1;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.875rem;
+  color: #cbd5e1;
+}
+
+.feature-item strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.feature-item.muted {
+  color: var(--text-subtle);
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.check-icon {
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  color: #34d399;
+  background: rgba(16, 185, 129, 0.12);
+  border-radius: 50%;
+  padding: 2px;
+}
+
+.cross-icon {
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  color: var(--text-subtle);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  padding: 2px;
+}
+
+/* ==========================================================================
+   CTA Buttons & Micro-Interactions
+   ========================================================================== */
+.cta-button {
+  position: relative;
+  width: 100%;
+  padding: 13px 20px;
+  border-radius: var(--radius-md);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  overflow: hidden;
+  transition: all var(--transition-fast);
+}
+
+.cta-button:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.28);
+  transform: translateY(-2px);
+}
+
+.cta-button:hover .arrow-icon {
+  transform: translateX(4px);
+}
+
+.cta-button .arrow-icon {
+  transition: transform var(--transition-fast);
+}
+
+/* Primary CTA for Most Popular Card */
+.cta-button.primary-cta {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 18px rgba(16, 185, 129, 0.35);
+}
+
+.cta-button.primary-cta:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  box-shadow: 0 6px 24px rgba(16, 185, 129, 0.5);
+}
+
+/* Subtle Shimmer Sweep on Hover */
+.cta-button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: skewX(-20deg);
+  transition: 0.6s ease;
+  pointer-events: none;
+}
+
+.cta-button:hover::after {
+  left: 140%;
+}
+
+/* Button Active Depression Micro-interaction */
+.cta-button:active {
+  transform: scale(0.97);
+}
+
+/* Button Ripple Effect Micro-interaction */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  transform: scale(0);
+  animation: rippleAnimation 0.6s linear;
+  pointer-events: none;
+}
+
+@keyframes rippleAnimation {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   Empty State (Fallback)
+   ========================================================================== */
+.empty-state {
+  text-align: center;
+  padding: 48px 24px;
+  background: var(--bg-card);
+  border: 1px dashed var(--border-card);
+  border-radius: var(--radius-lg);
+  margin-top: 24px;
+  width: 100%;
+}
+
+.empty-state.hidden {
+  display: none;
+}
+
+.empty-reset-btn {
+  margin-top: 14px;
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  background: var(--primary);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+/* ==========================================================================
+   Footer Trust Badges
+   ========================================================================== */
+.pricing-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 36px;
+  margin-top: 56px;
+  padding-top: 36px;
+  border-top: 1px solid var(--border-subtle);
+  width: 100%;
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.875rem;
+  color: var(--text-subtle);
+}
+
+.trust-item svg {
+  color: #818cf8;
+}
+
+/* ==========================================================================
+   Interactive Toast Notification (Micro-interaction feedback)
+   ========================================================================== */
+.toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  pointer-events: none;
+}
+
+.toast {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(99, 102, 241, 0.4);
+  border-radius: var(--radius-md);
+  padding: 14px 20px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 20px rgba(99, 102, 241, 0.25);
+  backdrop-filter: blur(16px);
+  color: var(--text-main);
+  font-size: 0.875rem;
+  max-width: 380px;
+  animation: toastSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.toast.toast-hiding {
+  opacity: 0;
+  transform: translateY(12px) scale(0.95);
+}
+
+.toast-icon {
+  width: 22px;
+  height: 22px;
+  min-width: 22px;
+  color: #34d399;
+}
+
+.toast-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.toast-title {
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.toast-desc {
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+}
+
+.toast-close {
+  margin-left: auto;
+  color: var(--text-subtle);
+  font-size: 1.25rem;
+  line-height: 1;
+  padding: 2px;
+  transition: color var(--transition-fast);
+}
+
+.toast-close:hover {
+  color: #ffffff;
+}
+
+@keyframes toastSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ==========================================================================
+   Responsive Breakpoints (CSS Grid & Flexbox)
+   ========================================================================== */
+@media (max-width: 1200px) {
+  .pricing-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+    max-width: 860px;
+  }
+}
+
+@media (max-width: 720px) {
+  .page-shell {
+    padding: 40px 16px 64px;
+  }
+
+  .controls-wrapper {
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+  }
+
+  .billing-control,
+  .filter-bar {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .filter-btn {
+    padding: 8px 12px;
+    font-size: 0.8125rem;
+  }
+
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    max-width: 440px;
+    gap: 32px;
+  }
+
+  .plan-description {
+    min-height: unset;
+  }
+
+  .popular-ribbon {
+    top: -12px;
+    font-size: 0.6875rem;
+    padding: 5px 12px;
+  }
+
+  .toast-container {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+  }
+
+  .toast {
+    max-width: 100%;
+  }
+}
+
+/* ==========================================================================
+   Reduced Motion Preferences
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
